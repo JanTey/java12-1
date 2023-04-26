@@ -1,5 +1,7 @@
 package ru.netology.quamid59.java12;
 
+import javax.lang.model.element.Name;
+
 public class Movie {
     private int id;
     private String movieName;
@@ -31,4 +33,5 @@ public class Movie {
     public int get() {
         return id;
     }
+
 }
