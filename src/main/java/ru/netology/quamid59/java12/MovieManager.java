@@ -3,7 +3,7 @@ package ru.netology.quamid59.java12;
 public class MovieManager {
     private Movie[] movies = new Movie[0];
     private Movie[] moviesReverse = new Movie[0];
-    private int countMovies = 10;//счетчик кол-ва выводимых фильмов для метода findLast
+    private int countMovies = 5;//счетчик кол-ва выводимых фильмов для метода findLast
 
     public MovieManager() {
     }
@@ -52,7 +52,7 @@ public class MovieManager {
         return new Movie[0];
     }
 
-    //вывод n фильмов в обратном порядке (по умолчанию n = 10)
+    //вывод n фильмов в обратном порядке (по умолчанию n = 5)
     public void findLast() {
         if (countMovies > movies.length) { //проверка, что n не больше нашего массива с фильмами
             countMovies = movies.length;
