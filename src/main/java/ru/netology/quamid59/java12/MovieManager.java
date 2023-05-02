@@ -61,8 +61,12 @@ public class MovieManager {
             limit = movies.length;
         }
         Movie[] tmp = new Movie[limit];
-        for (int i = 0, j = movies.length - 1; i < limit; i++, j--) {
-            tmp[i] = movies[j];
+        //    for (int i = 0, j = movies.length - 1; i < limit; i++, j--) {
+        //      tmp[i] = movies[j];
+        // }
+
+        for (int i = 0; i < limit; i++) {
+            tmp[i] = movies[movies.length - 1 - i];
         }
         movies = tmp;
         return tmp;
