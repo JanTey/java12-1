@@ -55,7 +55,7 @@ public class MovieManager {
     //  moviesReverse = tmp;
     //   movies = tmp;
     // }
-    public void findLast() {
+    public Movie[] findLast() {
         int limit = countMovies;
         if (limit > movies.length) {
             limit = movies.length;
@@ -65,6 +65,7 @@ public class MovieManager {
             tmp[i] = movies[j];
         }
         movies = tmp;
+        return tmp;
     }
 
 }
