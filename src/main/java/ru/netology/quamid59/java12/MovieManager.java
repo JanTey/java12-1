@@ -2,7 +2,7 @@ package ru.netology.quamid59.java12;
 
 public class MovieManager {
     private Movie[] movies = new Movie[0];
-    private Movie[] moviesReverse = new Movie[0];
+    //private Movie[] moviesReverse = new Movie[0];
     private int countMovies = 5;//счетчик кол-ва выводимых фильмов для метода findLast
 
     public MovieManager() {
@@ -20,14 +20,6 @@ public class MovieManager {
         this.movies = movies;
     }
 
-    public Movie[] getMoviesReverse() {
-        return moviesReverse;
-    }
-
-    public void setMoviesReverse(Movie[] moviesReverse) {
-        this.moviesReverse = moviesReverse;
-    }
-
     public int getCountMovies() {
         return countMovies;
     }
@@ -39,9 +31,7 @@ public class MovieManager {
     //добавление фильма в конец массива
     public void add(Movie movie) {
         Movie[] tmp = new Movie[movies.length + 1];
-        for (int i = 0; i < movies.length; i++) {
-            tmp[i] = movies[i];
-        }
+        System.arraycopy(movies, 0, tmp, 0, movies.length);
         tmp[movies.length] = movie;
         movies = tmp;
     }
@@ -53,14 +43,28 @@ public class MovieManager {
     }
 
     //вывод n фильмов в обратном порядке (по умолчанию n = 5)
+    // public void findLast() {
+    //   if (countMovies > movies.length) { //проверка, что n не больше нашего массива с фильмами
+    //countMovies =movies.length;
+
+    //   }
+    //   Movie[] tmp = new Movie[countMovies];
+    //   for (int i = 0, j = movies.length - 1; i < countMovies; i++, j--) {
+    //       tmp[i] = movies[j];
+    //   }
+    //  moviesReverse = tmp;
+    //   movies = tmp;
+    // }
     public void findLast() {
-        if (countMovies > movies.length) { //проверка, что n не больше нашего массива с фильмами
-            countMovies = movies.length;
+        int limit = countMovies;
+        if (limit > movies.length) {
+            limit = movies.length;
         }
-        Movie[] tmp = new Movie[countMovies];
-        for (int i = 0, j = movies.length - 1; i < countMovies; i++, j--) {
+        Movie[] tmp = new Movie[limit];
+        for (int i = 0, j = movies.length - 1; i < limit; i++, j--) {
             tmp[i] = movies[j];
         }
-        moviesReverse = tmp;
+        movies = tmp;
     }
+
 }
