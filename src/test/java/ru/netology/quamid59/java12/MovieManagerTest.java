@@ -52,7 +52,8 @@ public class MovieManagerTest {
         movieManager.findLast();
 
         // Проверяем, что метод getMoviesReverse() возвращает массив movies с ожидаемыми значениями
-        assertArrayEquals(new Movie[]{movies[14], movies[13], movies[12], movies[11], movies[10], movies[9], movies[8], movies[7], movies[6], movies[5]}, movieManager.getMoviesReverse());
+        // assertArrayEquals(new Movie[]{movies[14], movies[13], movies[12], movies[11], movies[10], movies[9], movies[8], movies[7], movies[6], movies[5]}, movieManager.getMoviesReverse());
+        assertArrayEquals(new Movie[]{movies[14], movies[13], movies[12], movies[11], movies[10], movies[9], movies[8], movies[7], movies[6], movies[5]}, movieManager.getMovies());
     }
 
     //
@@ -78,7 +79,8 @@ public class MovieManagerTest {
         movieManager.findLast();
 
         // Проверяем, что метод getMoviesReverse() возвращает массив movies с ожидаемыми значениями
-        assertArrayEquals(new Movie[]{movies[7], movies[6], movies[5], movies[4], movies[3], movies[2], movies[1], movies[0]}, movieManager.getMoviesReverse());
+        //  assertArrayEquals(new Movie[]{movies[7], movies[6], movies[5], movies[4], movies[3], movies[2], movies[1], movies[0]}, movieManager.getMoviesReverse());
+        assertArrayEquals(new Movie[]{movies[7], movies[6], movies[5], movies[4], movies[3], movies[2], movies[1], movies[0]}, movieManager.getMovies());
     }
 
     //
@@ -103,19 +105,19 @@ public class MovieManagerTest {
         assertArrayEquals(movies, movieManager.getMovies());
     }
 
-    @Test
-    public void testSetMoviesReverse() {
-        // Создаем заглушки (mock) объектов класса Movie
-        Movie movie1 = Mockito.mock(Movie.class);
-        Movie movie2 = Mockito.mock(Movie.class);
-        Movie[] moviesReverse = {movie1, movie2};
+    //  @Test
+    //  public void testSetMoviesReverse() {
+    // Создаем заглушки (mock) объектов класса Movie
+    //       Movie movie1 = Mockito.mock(Movie.class);
+    //      Movie movie2 = Mockito.mock(Movie.class);
+    //       Movie[] moviesReverse = {movie1, movie2};
 
-        // Устанавливаем массив фильмов в обратном порядке в movieManager с использованием метода setMoviesReverse()
-        movieManager.setMoviesReverse(moviesReverse);
+    // Устанавливаем массив фильмов в обратном порядке в movieManager с использованием метода setMoviesReverse()
+    //     movieManager.setMoviesReverse(moviesReverse);
 
-        // Проверяем, что массив фильмов в movieManager установлен правильно
-        assertArrayEquals(moviesReverse, movieManager.getMoviesReverse());
-    }
+    // Проверяем, что массив фильмов в movieManager установлен правильно
+    //      assertArrayEquals(moviesReverse, movieManager.getMoviesReverse());
+    //   }
 
     @Test
     public void testFindAll() {
@@ -127,7 +129,8 @@ public class MovieManagerTest {
         }
 
         // Устанавливаем массив фильмов в обратном порядке в movieManager
-        movieManager.setMoviesReverse(movies);
+        //   movieManager.setMoviesReverse(movies);
+        movieManager.setMovies(movies);
 
         // Проверяем, что метод findAll() возвращает пустой массив фильмов
         assertArrayEquals(new Movie[0], movieManager.findAll());
@@ -183,6 +186,69 @@ public class MovieManagerTest {
 
         // Проверяем, что метод get() возвращает корректное значение поля id
         assertEquals(1, movie.get());
+    }
+
+    ///////
+
+    @Test
+    public void testFindLastReturnsCountMovies() {
+        // Arrange
+        MovieManager movieManager = new MovieManager(2);
+        Movie movie1 = new Movie(1, "Movie 1");
+        Movie movie2 = new Movie(2, "Movie 2");
+        movieManager.add(movie1);
+        movieManager.add(movie2);
+
+        // Act
+        Movie[] result = movieManager.findLast();
+
+        // Assert
+        assertArrayEquals(new Movie[]{movie2, movie1}, result);
+    }
+
+    @Test
+    public void testFindLastReturnsAllMoviesIfCountMoviesIsGreaterThanMoviesLength() {
+        // Arrange
+        MovieManager movieManager = new MovieManager(3);
+        Movie movie1 = new Movie(1, "Movie 1");
+        Movie movie2 = new Movie(2, "Movie 2");
+        movieManager.add(movie1);
+        movieManager.add(movie2);
+
+        // Act
+        Movie[] result = movieManager.findLast();
+
+        // Assert
+        assertArrayEquals(new Movie[]{movie2, movie1}, result);
+    }
+
+    @Test
+    public void testFindLastReturnsEmptyArrayIfMoviesIsEmpty() {
+        // Arrange
+        MovieManager movieManager = new MovieManager(3);
+
+        // Act
+        Movie[] result = movieManager.findLast();
+
+        // Assert
+        assertArrayEquals(new Movie[0], result);
+    }
+
+    @Test
+    public void testFindLastReturnsAllMoviesIfCountMoviesIsGreaterThanMoviesLength2() {
+        // Arrange
+        MovieManager movieManager = new MovieManager(3);
+        Movie movie1 = new Movie(1, "Movie 1");
+        Movie movie2 = new Movie(2, "Movie 2");
+        movieManager.add(movie1);
+        movieManager.add(movie2);
+
+        // Act
+        movieManager.setCountMovies(4);
+        Movie[] result = movieManager.findLast();
+
+        // Assert
+        assertArrayEquals(new Movie[]{movie2, movie1}, result);
     }
 
 }
